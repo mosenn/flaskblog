@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Register Post</title>
+</head>
+<body>
+
+<h2>create Post</h2>
+
+<form action="/add_post" method="post">
+    <label for="title">Title:</label><br>
+    <input type="text" id="title" name="title" required><br><br>
+
+    <label for="description">Description:</label><br>
+    <textarea id="description" name="description" rows="4" cols="50" required></textarea><br><br>
+
+    <label for="image">Picture URL:</label><br>
+    <input type="text" id="image" name="image" required><br><br>
+
+    <label for="content">Content:</label><br>
+    <textarea id="content" name="content" rows="4" cols="50" required></textarea><br><br>
+
+    <input type="submit" value="Register">
+</form>
+
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <ul>
+      {% for message in messages %}
+        <li>{{ message }}</li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+{% endwith %}
+
+</body>
+</html>

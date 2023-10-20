@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>register</h2>
+
+<form action="/register" method="post" enctype="multipart/form-data">
+    <label for="username"> username:</label><br>
+    <input type="text" id="username" name="username" required><br><br>
+
+    <label for="password">password:</label><br>
+    <input type="password" id="password" name="password" required><br><br>
+
+    <label for="fullname"> fullname:</label><br>
+    <input type="text" id="fullname" name="fullname" required><br><br>
+
+    <label for="email">email:</label><br>
+    <input type="email" id="email" name="email" required><br><br>
+
+    <label for="user_profile">user_profiles:</label><br>
+    <input type="text" id="user_profile" name="user_profile" required><br><br>
+
+    <input type="submit" value="register">
+</form>
+{% with messages = get_flashed_messages() %}
+    {% if messages %}
+        <ul>
+            {% for message in messages %}
+                <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+{% endwith %}
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+
+<div>
+    {% if user_profile %}
+        <img src="{{user_profile}}" alt="{{ user_profile.username }} profile">
+    {% endif %}
+
+    {% if 'username' in session %}
+        <a href="{{ url_for('logout') }}">logout</a>
+        <a href="{{ url_for('add_post') }}">add post</a>
+    {% else %}
+        <a href="{{ url_for('login') }}">login</a>
+        <a href="{{ url_for('register') }}">register</a>
+    {% endif %}
+</div>
+<br>
+
+<form action="/" method="post">
+    <input type="text" name="search" placeholder="title or author">
+    <input type="submit" value="search">
+</form>
+
+{% if search_posts %}
+    <h2>search results</h2>
+    <ul>
+        {% for post in search_posts %}
+            <li>
+                <img src="{{ post.image }}" alt="{{ post.title }}">
+                <strong>title:</strong> {{ post.title }}<br>
+                <strong>author:</strong> {{ post.author }}<br>
+                <strong>date:</strong> {{ post.date }}<br>
+                <strong>description:</strong> {{ post.description }}<br><br>
+                <strong>content:</strong> {{ post.content }}<br>
+                <a href="{{ url_for('post_detail', post_id=post.id) }}">details</a><br><br>
+            </li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <h2>posts list</h2>
+    <ul>
+        {% for post in posts %}
+            <li>
+                <img src="{{ post.image }}">
+                <strong>title:</strong> {{ post.title }}<br>
+                <strong>author:</strong> {{ post.author }}<br>
+                <strong>date:</strong> {{ post.date }}<br>
+                <strong>description:</strong> {{ post.description }}<br>
+                <strong>content:</strong> {{ post.content }}<br>
+                <a href="{{ url_for('post_detail', post_id=post.id) }}">details</a><br><br>
+            </li>
+        {% endfor %}
+    </ul>
+{% endif %}
+</body>
+</html>
